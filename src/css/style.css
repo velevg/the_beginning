@@ -1,0 +1,23 @@
+* {
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+  width: 0px;
+}
+body {
+  background-image: url("../bg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.card {
+  width: 20rem;
+}
+.card-img-top {
+  height: 15rem;
+}
+.form-select {
+  padding: 6px 12px;
+}
+.btn {
+  height: 100%;
+}
