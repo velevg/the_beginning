@@ -29,7 +29,7 @@
           <div class="col-sm-6 col-md-4 col-lg-3 mt-4 product-item" data-category="{$product.category_id}">
             <div class="d-flex justify-content-center">
               <div class="card">
-                <img src="./uploads/{$product.photo}" class="card-img-top" alt="{$product.name}">
+                <img src="./uploads/{$product.photo}" class="card-img-top" alt="{$product.name}" loading="lazy">
                 <div class="card-body">
                   <h5 class="card-title">Name: {$product.name}</h5>
                   <!--<p class="card-text">ID: {$product.id}</p>
