@@ -2,9 +2,11 @@
 :)
 How to setup:
 
-extract in htdocs
+> htdocs > create new folder > name it "smartyProject"
 
-change the folder name to "smartyApp" if it's "smartyApp-master" (should be by default)!
+extract in smartyProject the "smartyApp-master" .rar
+
+change the folder name from "smartyApp-master" to "smartyApp"
 
 !Address should look like this!:
 htdocs/smartyProject/smartyApp/
