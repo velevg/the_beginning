@@ -26,7 +26,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $smarty->assign('products', $products);
 
 // Display the template
-$smarty->display('templates/index.tpl');
+$smarty->display('./templates/index.tpl');
 // Display the categories
 //foreach ($categories as $category) {
 //  echo $category['name'] . '<br>';
