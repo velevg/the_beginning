@@ -2,6 +2,7 @@
 :)
 How to setup:
 extract in htdocs
+change the folder name to "smartyApp" if it's "smartyApp-master" (should be by default)!
 run XAMPP > Apache + MySQL
 
 in localhost/phpmyadmin/
