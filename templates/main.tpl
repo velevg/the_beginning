@@ -36,12 +36,8 @@
                   <p class="card-text">Category ID: {$product.category_id}</p>-->
                   <p class="card-text">Price: {$product.price}</p>
                   <div class="d-flex justify-content-between">
-                    <input type="hidden" name="id" value="{$product.id}">
-                    <button type="submit" class="btn btn-warning" data-open-modal-productEdit>Edit</button>
-                    <form method="POST" action="controllers/delete_product.php" onsubmit="return confirm('Are you sure you want to delete this product?');">
-                      <input type="hidden" name="id" value="{$product.id}">
-                      <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                    <button type="submit" class="btn btn-warning" data-open-modal-productEdit data-product-id="{$product.id}">Edit</button>
+                    <button type="submit" class="btn btn-danger" data-open-modal-productDelete data-product-id="{$product.id}">Delete</button>
                   </div>
                 </div>
               </div>
@@ -100,4 +96,30 @@
     });
   });
   //END FILTER
+  //PASS PRODUCT ID to the Edit modal
+  let editButtons = document.querySelectorAll('[data-open-modal-productEdit]');
+
+  editButtons.forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      event.preventDefault();
+      let productId = this.getAttribute('data-product-id');
+
+      let productSelect = document.getElementById('productSelect');
+      productSelect.value = productId;
+    });
+  });
+  //end pass product id
+  //PASS PRODUCT ID to the Delete modal
+  let deleteButtons = document.querySelectorAll('[data-open-modal-productDelete]');
+
+  deleteButtons.forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      event.preventDefault();
+      let productId = this.getAttribute('data-product-id');
+
+      let productSelect = document.getElementById('productSelectID');
+      productSelect.value = productId;
+    });
+  });
+  //end pass product id
 </script>
