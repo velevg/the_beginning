@@ -1,77 +1,103 @@
-<dialog data-modal-productEdit class="bg-dark text-white border border-warning rounded">
-  <!-- HTML form -->
-  <h5><i class="fa-solid fa-cart-plus"></i> Edit Product</h5>
-  <form id="editProductForm" method="post" action="controllers/edit_product.php" enctype="multipart/form-data">
-    <div class="form-group d-flex">
-      <label class="input-group-text">Select product to Edit</label>
-      <select id="productSelect" name="id" class="form-select" required>
-        {foreach $products as $product}
-        <option value="{$product.id}">{$product.name}</option>
-        {/foreach}
-      </select>
+<div class="" style="margin: 0; padding: 0; overflow-x: hidden;">
+  <div class="row mb-5">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-2">
+      <div class=" bg-dark text-white p-3 rounded-bottom">
+        <p>{$content}</p>
+        <label class="input-group-text d-flex justify-content-center" for="filter"><i class="fa-sharp fa-solid fa-filter"></i> &nbsp <span>Filter by categories</span></label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="filter">Categories</label>
+          </div>
+          <select class="form-select form-select-sm" id="filter">
+            <option value="">All Categories</option>
+            {foreach $categories as $category}
+            <option value="{$category.id}">{$category.name}</option>
+            {/foreach}
+          </select>
+        </div>
+        <div class="text-center">
+          {foreach $categories as $category}
+          <div class="categoryDescription" data-category="{$category.id}"><i class="fas fa-images"></i> <span>{$category.name}: {$category.description}</span></div>
+          {/foreach}
+        </div>
+      </div>
     </div>
-    <div class="form-group d-flex">
-      <label class="input-group-text" for="category_id">Move to Category</label>
-      <select id="categorySelect" class="form-select" name="category_id">
-        {foreach $categories as $category}
-        <option value="{$category.id}">{$category.name}</option>
-        {/foreach}
-      </select>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-10 mt-md-0 mt-5 mb-5">
+      <div id="product-list d-flex justify-content-center">
+        <div class="row d-flex justify-content-center">
+          {foreach $products as $product}
+          <div class="col-sm-6 col-md-4 col-lg-3 mt-4 product-item" data-category="{$product.category_id}">
+            <div class="d-flex justify-content-center">
+              <div class="card">
+                <img src="./uploads/{$product.photo}" class="card-img-top" alt="{$product.name}" loading="lazy">
+                <div class="card-body">
+                  <h5 class="card-title">Name: {$product.name}</h5>
+                  <!--<p class="card-text">ID: {$product.id}</p>
+                  <p class="card-text">Category ID: {$product.category_id}</p>-->
+                  <p class="card-text">Price: {$product.price}</p>
+                  <div class="d-flex justify-content-between">
+                    <input type="hidden" name="id" value="{$product.id}">
+                    <button type="submit" class="btn btn-warning" data-open-modal-productEdit>Edit</button>
+                    <form method="POST" action="controllers/delete_product.php" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                      <input type="hidden" name="id" value="{$product.id}">
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/foreach}
+        </div>
+      </div>
     </div>
-    <div class="form-group d-flex">
-      <label class="input-group-text" for="name">New Product Name</label>
-      <input type="text" name="name" id="name" class="form-control" required>
-    </div>
-    <div class="form-group d-flex">
-      <label class="input-group-text" for="photo">New Product Photo</label>
-      <input type="file" name="photo" id="photo" class="form-control" required>
-    </div>
-    <div class="form-group d-flex">
-      <label class="input-group-text" for="price">New Product Price</label>
-      <input type="number" name="price" id="price" step="0.01" class="form-control" required>
-    </div>
-    <div class="d-flex justify-content-between mt-3">
-      <button data-close-modal-productEdit class="btn btn-warning">Close</button>
-      <button id="editProductButton" type="submit" class="btn btn-success"><i class="far fa-edit"></i> Edit Product</button>
-    </div>
-  </form>
-</dialog>
-<script>
-  // Edit Product Modal
-  const btnOpenProductEditModal = document.querySelectorAll('[data-open-modal-productEdit]');
-  const btnCloseProductEditModal = document.querySelector('[data-close-modal-productEdit]');
-  const modalProductEdit = document.querySelector('[data-modal-productEdit]');
+  </div>
+</div>
 
-  btnOpenProductEditModal.forEach(btn => {
-    btn.addEventListener('click', () => {
-      modalProductEdit.showModal();
+
+
+<script>
+  //FILTER
+  const filterSelect = document.querySelector('#filter');
+  const productItems = document.querySelectorAll('.product-item');
+  const categoryDescriptions = document.querySelectorAll('.categoryDescription');
+
+  filterSelect.addEventListener('change', function() {
+    const selectedCategoryId = this.value;
+
+    //while (selectedCategoryId === '') {
+    //  categoryDescriptions.forEach(function(categoryDescription) {
+    //    categoryDescription.style.display = 'none';
+    //  });
+    //
+    //  productItems.forEach(function(productItem) {
+    //    productItem.style.display = 'block';
+    //  });
+    //
+    //  return;
+    //}
+
+    // Filter Category Description by category id from the select
+    categoryDescriptions.forEach(function(categoryDescription) {
+      const category = categoryDescription.getAttribute('data-category');
+
+      if (category === selectedCategoryId || selectedCategoryId === '') {
+        categoryDescription.style.display = 'block';
+      } else {
+        categoryDescription.style.display = 'none';
+      }
+    });
+
+    // Filter Products by category id
+    productItems.forEach(function(productItem) {
+      const category = productItem.getAttribute('data-category');
+
+      if (category === selectedCategoryId || selectedCategoryId === '') {
+        productItem.style.display = 'block';
+      } else {
+        productItem.style.display = 'none';
+      }
     });
   });
-
-  btnCloseProductEditModal.addEventListener('click', () => {
-    modalProductEdit.close();
-  });
-  //AJAX Edit Product
-  //$(document).ready(function() {
-  //  $('#editProductButton').on('click', function() {
-  //    let id = $('#productSelect').val();
-  //    let category_id = $('#categorySelect').val();
-  //    let name = $('#name').val();
-  //    let photo = $('#photo').val();
-  //    let price = $('#price').val();
-  //
-  //    // Send an AJAX POST request
-  //    $.ajax({
-  //      url: 'controllers/edit_product.php',
-  //      type: 'POST',
-  //      data: {
-  //        id: id,
-  //        category_id: category_id,
-  //        name: name,
-  //        photo: photo,
-  //        price: price,
-  //      },
-  //    });
-  //  });
-  //}); // action="controllers/edit_product.php" remove 
+  //END FILTER
 </script>
