@@ -38,3 +38,5 @@ CREATE TABLE products (
 
 !Address should look like this!:
 localhost/smartyProject/smartyApp/
+
+Reach out to me if you have any questions! :)
