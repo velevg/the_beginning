@@ -4,7 +4,7 @@
   <form id="deleteCategoryForm" method="post" action="controllers/delete_category.php" onsubmit="return confirm('Are you sure you want to delete this product?');">
     <div class="form-group d-flex">
       <label class="input-group-text">Select Category to Delete</label>
-      <select id="categorySelect" name="id" class="form-select" required>
+      <select id="categorySelect" name="id" class="form-select" style="min-width:100px;" required>
         {foreach $categories as $category}
         <option value="{$category.id}">{$category.name}</option>
         {/foreach}
