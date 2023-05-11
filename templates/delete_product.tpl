@@ -4,7 +4,7 @@
   <form id="deleteProductForm" method="post" action="controllers/delete_product.php" onsubmit="return confirm('Are you sure you want to delete this product?');">
     <div class="form-group d-flex">
       <label class="input-group-text">Select Product to Delete</label>
-      <select id="productSelect" name="id" class="form-select" required>
+      <select id="productSelectID" name="id" class="form-select" required>
         {foreach $products as $product}
         <option value="{$product.id}">{$product.name}</option>
         {/foreach}
@@ -18,12 +18,14 @@
 </dialog>
 <script>
   //Delete Product Modal
-  const btnAddProductDelete = document.querySelector('[data-open-modal-productDelete]');
+  const btnAddProductDelete = document.querySelectorAll('[data-open-modal-productDelete]');
   const btnCloseProductDelete = document.querySelector('[data-close-modal-productDelete]');
   const modalProductDelete = document.querySelector('[data-modal-productDelete]');
 
-  btnAddProductDelete.addEventListener('click', () => {
-    modalProductDelete.showModal();
+  btnAddProductDelete.forEach(btn => {
+    btn.addEventListener('click', () => {
+      modalProductDelete.showModal();
+    });
   });
   btnCloseProductDelete.addEventListener('click', () => {
     modalProductDelete.close();
