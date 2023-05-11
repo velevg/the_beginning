@@ -1,11 +1,16 @@
 # smartyApp
 :)
 How to setup:
+
 extract in htdocs
+
 change the folder name to "smartyApp" if it's "smartyApp-master" (should be by default)!
+
 ! IN ROOT FOLDER (smartyApp) create folder "uploads" ! (for img store)!
+
 !Address should look like this!:
 htdocs/smartyProject/smartyApp/
+
 localhost/smartyProject/smartyApp/
 
 run XAMPP > Apache + MySQL
