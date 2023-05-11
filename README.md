@@ -3,6 +3,10 @@
 How to setup:
 extract in htdocs
 change the folder name to "smartyApp" if it's "smartyApp-master" (should be by default)!
+!Address should look like this!:
+htdocs/smartyProject/smartyApp/
+localhost/smartyProject/smartyApp/
+
 run XAMPP > Apache + MySQL
 
 in localhost/phpmyadmin/
@@ -26,5 +30,5 @@ CREATE TABLE products (
   FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
 
-address:
-localhost/../smartyApp/
+!Address should look like this!:
+localhost/smartyProject/smartyApp/
