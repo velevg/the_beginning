@@ -4,7 +4,7 @@
   <form id="deleteProductForm" method="post" action="controllers/delete_product.php" onsubmit="return confirm('Are you sure you want to delete this product?');">
     <div class="form-group d-flex">
       <label class="input-group-text">Select Product to Delete</label>
-      <select id="productSelectID" name="id" class="form-select" required>
+      <select id="productSelectID" name="id" class="form-select" style="min-width:100px;" required>
         {foreach $products as $product}
         <option value="{$product.id}">{$product.name}</option>
         {/foreach}
