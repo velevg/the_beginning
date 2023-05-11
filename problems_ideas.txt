@@ -1,4 +1,3 @@
 1. edit_product.tpl - !AJAX! 
-2. on edit btn click pass the product id and category id to the modal it would be nice :D
-3. position-fixed smh on the filter categories select tag sticky-top? maybe? cuz this way field of view will be limited to prolly 1 prod max :S
-4. output for "product added" or "category added" on success or unsuccess :S also for edit and the delete action
+2. position-fixed smh on the filter categories select tag sticky-top? maybe? cuz this way field of view will be limited to prolly 1 prod max :S
+3. output for "product added" or "category added" on success or unsuccess :S also for edit and the delete action
